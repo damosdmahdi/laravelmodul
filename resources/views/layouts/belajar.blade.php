@@ -108,6 +108,24 @@
             border-radius: 12px;
             padding: 12px 18px;
         }
+
+        /* Majastic Studio Brand Badge & Footer */
+        .majastic-brand-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+        }
+        .majastic-brand-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4) !important;
+            border-color: #fbbf24 !important;
+        }
+        .hover-white {
+            transition: color 0.2s ease;
+        }
+        .hover-white:hover {
+            color: #ffffff !important;
+            text-decoration: underline !important;
+        }
     </style>
     @stack('styles')
 </head>
@@ -206,18 +224,69 @@
         @yield('content')
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-dark text-white border-top border-secondary py-4 mt-5">
-        <div class="container text-center small text-muted">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-md-start mb-2 mb-md-0">
-                    <span class="text-white fw-bold">Eskul Web SMK &bull; Fundamental Laravel</span>
-                    <span class="d-block text-secondary">Materi Khusus Kelas 10 & 11 (Fase E & F PPLG/RPL)</span>
+    <!-- FOOTER ELEGAN DENGAN BRANDING MAJASTIC STUDIO -->
+    <footer class="text-white border-top border-secondary border-opacity-50 py-5 mt-5" style="background: radial-gradient(circle at 50% 0%, #1f2937 0%, #0f172a 60%, #030712 100%);">
+        <div class="container">
+            <div class="row align-items-center gy-4">
+                <!-- SISI KIRI: INFORMASI KURIKULUM & SISTEM -->
+                <div class="col-lg-4 text-center text-lg-start">
+                    <div class="d-inline-flex align-items-center gap-2 mb-2">
+                        <span class="badge bg-danger p-2 shadow-sm"><i class="bi bi-fire fs-6"></i></span>
+                        <span class="fs-5 fw-bold text-white tracking-wide">LARAVEL SMK</span>
+                    </div>
+                    <p class="text-secondary small mb-3 lh-sm">
+                        Platform Pembelajaran Fundamental Laravel &amp; Arsitektur Sistem Inventaris Lab Berbasis Proyek Industri untuk SMK (Fase E &amp; F PPLG/RPL).
+                    </p>
+                    <div class="d-flex flex-wrap gap-1 justify-content-center justify-content-lg-start">
+                        <span class="badge bg-dark border border-secondary text-light">Laravel {{ Illuminate\Foundation\Application::VERSION }}</span>
+                        <span class="badge bg-dark border border-secondary text-light">PHP {{ PHP_VERSION }}</span>
+                        <span class="badge bg-success bg-opacity-75">SQLite Active</span>
+                        <span class="badge bg-primary bg-opacity-75">45 Routes</span>
+                    </div>
                 </div>
-                <div class="col-md-6 text-md-end">
-                    <span class="badge bg-secondary me-1">Laravel {{ Illuminate\Foundation\Application::VERSION }}</span>
-                    <span class="badge bg-dark border border-secondary text-light">PHP {{ PHP_VERSION }}</span>
-                    <span class="badge bg-success">SQLite Database Active</span>
+
+                <!-- SISI TENGAH: BRANDING UTAMA "by: MAJASTIC studio" -->
+                <div class="col-lg-4 text-center">
+                    <div class="majastic-brand-card p-3 px-4 rounded-4 d-inline-block shadow" style="background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px);">
+                        <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
+                            <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-0 font-monospace small" style="font-size: 0.68rem; letter-spacing: 1px;">
+                                OFFICIAL BRAND
+                            </span>
+                            <span class="text-secondary small fw-bold text-uppercase" style="font-size: 0.72rem; letter-spacing: 1.5px;">
+                                by:
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center gap-3">
+                            <img src="{{ asset('images/majastic-studio.png') }}" alt="Majastic Studio Logo" style="height: 62px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));">
+                            <div class="text-start border-start ps-3 border-secondary-subtle">
+                                <span class="d-block fw-bolder text-dark font-monospace fs-5" style="letter-spacing: 2px; line-height: 1.1;">MAJASTIC</span>
+                                <span class="d-block text-secondary small fw-semibold" style="letter-spacing: 4px; font-size: 0.72rem;">S T U D I O</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SISI KANAN: TAUTAN CEPAT & STATUS -->
+                <div class="col-lg-4 text-center text-lg-end">
+                    <h6 class="text-white fw-bold small text-uppercase tracking-wider mb-2">
+                        <i class="bi bi-compass me-1 text-warning"></i> Navigasi Pembelajaran
+                    </h6>
+                    <ul class="list-unstyled small mb-0 text-secondary">
+                        <li class="mb-1"><a href="{{ route('belajar.index') }}" class="text-secondary text-decoration-none hover-white">&rarr; Dashboard 6 Modul Interaktif</a></li>
+                        <li class="mb-1"><a href="{{ route('belajar.keamanan') }}" class="text-secondary text-decoration-none hover-white">&rarr; Laboratorium Keamanan Web (6 Tipe)</a></li>
+                        <li class="mb-1"><a href="{{ route('lab-kasus.index') }}" class="text-secondary text-decoration-none hover-white">&rarr; Sistem Inventaris &amp; Peminjaman Lab</a></li>
+                        <li><a href="{{ route('tugas.index') }}" class="text-secondary text-decoration-none hover-white">&rarr; Autochecker Rapor Mandiri Siswa</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- GARIS BAWAH HAK CIPTA -->
+            <div class="border-top border-secondary border-opacity-25 mt-4 pt-3 text-center small text-secondary">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                    <span>&copy; {{ date('Y') }} <strong>Eskul Web Laravel SMK</strong> &bull; Didedikasikan untuk kemajuan pendidikan vokasi PPLG / RPL Indonesia.</span>
+                    <span class="text-light text-opacity-75 font-monospace" style="font-size: 0.76rem;">
+                        Crafted &amp; Powered by: <strong class="text-warning">MAJASTIC Studio</strong>
+                    </span>
                 </div>
             </div>
         </div>
