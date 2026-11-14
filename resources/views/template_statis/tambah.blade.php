@@ -57,7 +57,7 @@
                         </h6>
                     </div>
                     <div class="card-body p-4">
-                        <!-- CATATAN: Pada Modul 5, form ini akan diberi action="{{ route('items.store') }}" method="POST" dan @csrf -->
+                        <!-- CATATAN: Pada Modul 5, form ini akan diberi action="/items" method="POST" dan &#64;csrf -->
                         <form action="#" method="POST">
 
                             <div class="row g-3">

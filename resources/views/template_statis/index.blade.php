@@ -49,7 +49,7 @@
         <!-- ALERT CONTOH -->
         <div class="alert alert-info alert-dismissible fade show" role="alert">
             <i class="bi bi-info-circle-fill me-2"></i>
-            <strong>Catatan untuk Siswa:</strong> Ini adalah template tampilan statis. Pada <strong>Modul 3</strong>, kalian akan memecah file ini menjadi <em>Master Layout</em> (<code>@extends</code>, <code>@yield</code>, <code>@section</code>), dan pada <strong>Modul 5 & 6</strong> data tabel ini akan digantikan perulangan data dinamis dari Database!
+            <strong>Catatan untuk Siswa:</strong> Ini adalah template tampilan statis. Pada <strong>Modul 3</strong>, kalian akan memecah file ini menjadi <em>Master Layout</em> (<code>&#64;extends</code>, <code>&#64;yield</code>, <code>&#64;section</code>), dan pada <strong>Modul 5 & 6</strong> data tabel ini akan digantikan perulangan data dinamis dari Database!
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 

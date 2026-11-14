@@ -57,7 +57,7 @@
                         </h6>
                     </div>
                     <div class="card-body p-4">
-                        <!-- CATATAN: Pada Modul 6, form ini akan diberi @method('PUT') dan @csrf -->
+                        <!-- CATATAN: Pada Modul 6, form ini akan diberi &#64;method('PUT') dan &#64;csrf -->
                         <form action="#" method="POST">
 
                             <div class="row g-3">
