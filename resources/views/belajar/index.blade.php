@@ -48,61 +48,72 @@
         </div>
     </div>
 
-    <!-- 2 PILAR UTAMA -->
+    <!-- 3 FITUR UTAMA PORTAL -->
     <div class="row g-4 mb-5">
         <!-- PILAR 1 -->
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
                 <div class="card-header bg-primary text-white py-3 px-4 d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0 fw-bold"><i class="bi bi-cpu-fill me-2"></i>Pilar 1: Lab & Simulator Interaktif</h5>
-                    <span class="badge bg-white text-primary fw-bold">Tempat Coba-coba</span>
+                    <h6 class="mb-0 fw-bold"><i class="bi bi-cpu-fill me-2"></i>1. Simulator & Animasi Folder</h6>
+                    <span class="badge bg-white text-primary fw-bold">Modul 1-6</span>
                 </div>
                 <div class="card-body p-4">
-                    <p class="text-muted">
-                        Di sini siswa bisa <strong>mengubah-ubah kode secara langsung</strong> dan melihat <strong>animasi alur request</strong>: file dan folder mana saja yang di-<em>hit</em> saat tombol diklik (Browser &rarr; Route &rarr; Controller &rarr; Model &rarr; View).
+                    <p class="text-muted small">
+                        Eksplorasi folder VS Code interaktif yang terbuka satu per satu secara otomatis saat request dijalankan.
                     </p>
-                    <ul class="list-unstyled mb-4">
-                        <li class="py-2 border-bottom d-flex align-items-center">
-                            <i class="bi bi-check-circle-fill text-success me-2"></i> Animasi packet data visual berjalan antar folder.
-                        </li>
-                        <li class="py-2 border-bottom d-flex align-items-center">
-                            <i class="bi bi-check-circle-fill text-success me-2"></i> Live Blade templating compiler.
-                        </li>
-                        <li class="py-2 d-flex align-items-center">
-                            <i class="bi bi-check-circle-fill text-success me-2"></i> Saklar simulasi error CSRF (Token mismatch 419).
-                        </li>
+                    <ul class="list-unstyled mb-4 small">
+                        <li class="py-1 border-bottom"><i class="bi bi-check-circle-fill text-success me-1"></i> Visual Explorer ala VS Code</li>
+                        <li class="py-1 border-bottom"><i class="bi bi-check-circle-fill text-success me-1"></i> Live Trace Log File yang di-HIT</li>
+                        <li class="py-1"><i class="bi bi-check-circle-fill text-success me-1"></i> Simulator Skenario 404 Error</li>
                     </ul>
-                    <a href="{{ route('belajar.modul2') }}" class="btn btn-outline-primary w-100 fw-semibold">
-                        Mulai Eksplorasi Simulator <i class="bi bi-arrow-right ms-1"></i>
+                    <a href="{{ route('belajar.modul2') }}" class="btn btn-outline-primary btn-sm w-100 fw-semibold">
+                        Buka Simulator Alur MVC <i class="bi bi-arrow-right ms-1"></i>
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- PILAR 2 -->
-        <div class="col-lg-6">
-            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                <div class="card-header bg-warning text-dark py-3 px-4 d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0 fw-bold"><i class="bi bi-cone-striped me-2"></i>Pilar 2: Studi Kasus Belum Sempurna</h5>
-                    <span class="badge bg-dark text-white fw-bold">Tantangan Praktik</span>
+        <!-- PILAR 2: AUTOCHECKER TUGAS SISWA -->
+        <div class="col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden border-2 border-success">
+                <div class="card-header bg-success text-white py-3 px-4 d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 fw-bold"><i class="bi bi-patch-check-fill me-2"></i>2. Autochecker Tugas Siswa</h6>
+                    <span class="badge bg-white text-success fw-bold">Folder tugas-siswa</span>
                 </div>
                 <div class="card-body p-4">
-                    <p class="text-muted">
-                        Halaman aplikasi <strong>"Inventaris Lab" yang sudah bisa dijalankan</strong>, namun sengaja dibuat <strong>belum sempurna</strong> (ada bug tantangan) untuk diperbaiki siswa sesuai modul.
+                    <p class="text-muted small">
+                        Sistem otomatis memeriksa file yang dibuat siswa di folder <code>tugas-siswa/</code> dan memberi skor instan (0-100).
                     </p>
-                    <ul class="list-unstyled mb-4">
-                        <li class="py-2 border-bottom d-flex align-items-center">
-                            <i class="bi bi-pin-angle-fill text-warning me-2"></i> Dilengkapi <strong>Tanda Identitas Pengerja</strong> (Watermark Nama Siswa).
-                        </li>
-                        <li class="py-2 border-bottom d-flex align-items-center">
-                            <i class="bi bi-pin-angle-fill text-warning me-2"></i> Checklist tugas perbaikan (Validasi form, CSRF, Edit PUT).
-                        </li>
-                        <li class="py-2 d-flex align-items-center">
-                            <i class="bi bi-pin-angle-fill text-warning me-2"></i> Halaman simulasi kolaborasi tim 2 siswa (Merge Conflict).
-                        </li>
+                    <ul class="list-unstyled mb-4 small">
+                        <li class="py-1 border-bottom"><i class="bi bi-check-circle-fill text-success me-1"></i> Pindai Route, Controller & Model</li>
+                        <li class="py-1 border-bottom"><i class="bi bi-check-circle-fill text-success me-1"></i> Verifikasi @csrf, Layout & Migrasi</li>
+                        <li class="py-1"><i class="bi bi-check-circle-fill text-success me-1"></i> Salin Rapor Nilai Otomatis ke Guru</li>
                     </ul>
-                    <a href="{{ route('lab-kasus.index') }}" class="btn btn-warning w-100 fw-semibold text-dark">
-                        Buka Halaman Studi Kasus <i class="bi bi-arrow-right ms-1"></i>
+                    <a href="{{ route('tugas.index') }}" class="btn btn-success btn-sm w-100 fw-bold text-white">
+                        <i class="bi bi-patch-check me-1"></i> Buka Pemeriksa Tugas <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PILAR 3: STUDI KASUS & TIM -->
+        <div class="col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <div class="card-header bg-warning text-dark py-3 px-4 d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 fw-bold"><i class="bi bi-cone-striped me-2"></i>3. Kasus Lab & Kerja Tim</h6>
+                    <span class="badge bg-dark text-white fw-bold">Praktikum</span>
+                </div>
+                <div class="card-body p-4">
+                    <p class="text-muted small">
+                        Studi kasus aplikasi Inventaris Lab SMK dan simulasi kerja kelompok 2 siswa (Siswa A vs B) mengatasi *merge conflict*.
+                    </p>
+                    <ul class="list-unstyled mb-4 small">
+                        <li class="py-1 border-bottom"><i class="bi bi-check-circle-fill text-success me-1"></i> Identitas & Watermark Siswa</li>
+                        <li class="py-1 border-bottom"><i class="bi bi-check-circle-fill text-success me-1"></i> Checklist 3 Misi Perbaikan</li>
+                        <li class="py-1"><i class="bi bi-check-circle-fill text-success me-1"></i> Simulator Konflik Kode Git</li>
+                    </ul>
+                    <a href="{{ route('lab-kasus.index') }}" class="btn btn-outline-warning text-dark btn-sm w-100 fw-semibold">
+                        Buka Studi Kasus Lab <i class="bi bi-arrow-right ms-1"></i>
                     </a>
                 </div>
             </div>

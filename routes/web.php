@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BelajarController;
+use App\Http\Controllers\CheckerController;
 use App\Http\Controllers\LabKasusController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,17 @@ Route::prefix('belajar')->name('belajar.')->group(function () {
 });
 
 // ==========================================
-// PILAR 2: STUDI KASUS & TANTANGAN PENGERJAAN SISWA
+// PILAR 2: SISTEM AUTOCHECKER TUGAS SISWA
+// (Memeriksa folder tugas-siswa secara otomatis)
+// ==========================================
+Route::prefix('tugas-siswa')->name('tugas.')->group(function () {
+    Route::get('/', [CheckerController::class, 'index'])->name('index');
+    Route::post('/init', [CheckerController::class, 'initWorkspace'])->name('init');
+    Route::get('/api/check', [CheckerController::class, 'checkAjax'])->name('api');
+});
+
+// ==========================================
+// STUDI KASUS & TANTANGAN PENGERJAAN SISWA
 // (Halaman belum sempurna tapi bisa dijalankan + tanda pengerja)
 // ==========================================
 Route::prefix('lab-kasus')->name('lab-kasus.')->group(function () {

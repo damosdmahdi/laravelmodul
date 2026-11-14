@@ -150,6 +150,11 @@
                         </ul>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('tugas.*') ? 'active text-success fw-bold' : 'text-light' }}" href="{{ route('tugas.index') }}">
+                            <i class="bi bi-patch-check-fill text-success me-1"></i> Autochecker Tugas Siswa
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {{ request()->is('lab-kasus*') && !request()->routeIs('lab-kasus.kelompok') ? 'active text-warning fw-semibold' : '' }}" href="{{ route('lab-kasus.index') }}">
                             <i class="bi bi-tools text-warning me-1"></i> Studi Kasus Lab (Tantangan)
                         </a>

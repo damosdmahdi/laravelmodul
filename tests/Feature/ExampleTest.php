@@ -37,6 +37,8 @@ class ExampleTest extends TestCase
             '/lab-kasus/tambah',
             "/lab-kasus/edit/{$item->id}",
             '/lab-kasus/simulasi-kelompok',
+            '/tugas-siswa',
+            '/tugas-siswa/api/check',
             '/template-statis',
             '/template-statis/tambah',
             '/template-statis/edit',
@@ -63,5 +65,15 @@ class ExampleTest extends TestCase
 
         $response->assertRedirect('/lab-kasus');
         $this->assertDatabaseHas('items', ['kode_barang' => 'LAB-NEW']);
+    }
+
+    /**
+     * Test autochecker initialization.
+     */
+    public function test_init_tugas_siswa_workspace_works(): void
+    {
+        $response = $this->post('/tugas-siswa/init');
+        $response->assertRedirect('/tugas-siswa');
+        $this->assertDirectoryExists(base_path('tugas-siswa'));
     }
 }
