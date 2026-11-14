@@ -20,91 +20,64 @@ Repositori starter pembelajaran pemrograman web dengan Framework Laravel tingkat
 
 ---
 
-## 🛠️ Panduan Menghidupkan Proyek (Bagi Siswa yang Melakukan Clone)
+## 🛠️ Panduan Menghidupkan Proyek (Bagi Mahasiswa / Siswa Setelah Clone)
 
-> **Catatan Penting untuk Siswa:**  
-> File `.env` dan folder `vendor/` **sengaja tidak di-push ke GitHub** (masuk `.gitignore`).  
-> Mengapa?
-> 1. Agar ukuran repository ringan dan cepat saat di-clone.
-> 2. Menjaga keamanan data sensitif (password database & API key).
-> 
-> Karena itu, setiap kali kalian clone repositori Laravel, lakukan langkah berikut:
+> [!IMPORTANT]
+> **Mengapa Tidak Bisa Langsung `php artisan serve`?**
+> Sesuai standar industri dunia kerja, file `.env` (berisi password/kredensial) dan folder `vendor/` (berisi ratusan megabyte library) **sengaja tidak dimasukkan ke dalam Git** (`.gitignore`).
+> Oleh karena itu, setiap kali kalian clone repositori Laravel, jalankan langkah wajib berikut:
+
+### Opsi A: Cara Cepat (Rekomendasi)
+Buka terminal di dalam folder proyek hasil clone, lalu jalankan:
+
+```bash
+# 1. Unduh library vendor Laravel
+composer install
+
+# 2. Jalankan setup otomatis (membuat .env, APP_KEY, dan database SQLite + Seeder)
+composer run setup
+
+# 3. Nyalakan server lokal
+php artisan serve
+```
+
+---
+
+### Opsi B: Langkah Manual Step-by-Step
 
 ```bash
 # 1. Clone repositori ke komputer kalian
 git clone <URL_REPOSITORI_GITHUB>
-cd laravel
+cd <nama-folder-repo>
 
 # 2. Unduh dependensi Laravel (folder vendor)
 composer install
 
-# 3. Buat file konfigurasi .env dari template
-cp .env.example .env
+# 3. Salin file konfigurasi .env
+cp .env.example .env          # Di Linux / macOS / Git Bash
+copy .env.example .env        # Di Windows Command Prompt (CMD)
 
-# 4. Generate App Key unik
+# 4. Generate Kunci Enkripsi Aplikasi (APP_KEY)
 php artisan key:generate
 
-# 5. Jalankan migrasi database SQLite
-php artisan migrate
+# 5. Jalankan migrasi dan isi data awal inventaris
+php artisan migrate --seed
 
-# 6. Jalankan server lokal
+# 6. Nyalakan server lokal
 php artisan serve
 ```
 
-Buka browser dan akses: `http://127.0.0.1:8000`
+Buka peramban di komputer kalian: **`http://127.0.0.1:8000`** 🎉
 
 ---
 
-## 📂 Lokasi Template Statis yang Harus Dipecah Siswa
-
-Mentor telah menyiapkan template HTML/Bootstrap sederhana yang belum dinamis:
-- Preview via browser: `http://127.0.0.1:8000/template-statis`
-- File Blade statis: `resources/views/template_statis/`
-- File HTML murni: `public/template_mentah/`
-
----
-
-## 🌿 Alur Kerja Tugas dengan GitHub Branching (Workflow Siswa)
-
-Siswa dilarang langsung melakukan push ke branch `main`. Setiap pengerjaan tugas modul wajib menggunakan fitur **Branching & Pull Request (PR)**:
-
-```mermaid
-gitGraph
-   commit id: "Initial-Setup"
-   branch feat/blade-layout
-   checkout feat/blade-layout
-   commit id: "Master-Layout"
-   commit id: "Pecah-Halaman"
-   checkout main
-   merge feat/blade-layout
-   branch feat/database-migration
-   checkout feat/database-migration
-   commit id: "Create-Items-Table"
-   checkout main
-   merge feat/database-migration
-   branch feat/crud-create-read
-   checkout feat/crud-create-read
-   commit id: "Form-&-Table"
-   checkout main
-   merge feat/crud-create-read
-   branch feat/crud-update-delete
-   checkout feat/crud-update-delete
-   commit id: "Edit-&-Delete"
-   checkout main
-   merge feat/crud-update-delete
-```
-
-### Daftar Branch Penugasan:
-1. `feat/blade-layout`: Memecah template mentah menjadi Master Layout Blade (`app.blade.php`), menyusun `@yield`, `@section`, serta route & controller untuk menampilkannya.
-2. `feat/database-migration`: Membuat migrasi tabel `items` (kolom: `id`, `kode_barang`, `nama_barang`, `kategori`, `stok`, `kondisi`) dan Model `Item`.
-3. `feat/crud-create-read`: Membuat form tambah data barang baru, validasi input, simpan ke database, dan tampilkan di tabel utama.
-4. `feat/crud-update-delete`: Membuat fitur edit data barang, update ke DB, dan fitur hapus barang.
-
----
-
-## 👥 Simulasi Kerja Kolompok Mini (Tim 2 Siswa)
-
-Untuk melatih simulasi kerja tim dan penanganan konflik kode (*merge conflict*):
-- **Siswa A:** Bertugas di branch `feat/create-read` (Tampil data & Tambah data).
-- **Siswa B:** Bertugas di branch `feat/update-delete` (Edit data & Hapus data).
-- **Momen Belajar:** Karena keduanya menyentuh `routes/web.php` dan `ItemController.php`, saat proses Merge ke branch `main` akan timbul *conflict* ringan yang harus mereka diskusikan dan selesaikan bersama.
+## 🌟 Fitur Utama di Dalam Repositori Ini:
+1. **Pilar 1 - Portal Belajar & Simulator Interaktif:** Modul 1 s/d 6 mencakup analogi bangun rumah, simulator pohon folder VS Code mekar, master layout synchronizer, timeline migrasi, dan simulator hacker SQL Injection.
+2. **Laboratorium Keamanan Web (Security Hub):** Uji coba interaktif 6 jenis proteksi keamanan siber industri (RBAC 403, Rate Limiter 429, Password Hash Bcrypt vs MD5, XSS Sanitizer, Mass Assignment, dan Soft Deletes).
+3. **Pilar 2 - Autochecker Tugas Mandiri Siswa:** Sistem inspeksi file kode otomatis di folder `tugas-siswa/` yang memberikan skor 0–100 dan rapor otomatis.
+4. **Pilar 3 - Sistem Inventaris Lab Lengkap:**
+   - CRUD Barang Inventaris & Pencarian Cepat
+   - Transaksi Peminjaman Alat Lab (Stok terpotong otomatis)
+   - Tong Sampah (Recycle Bin - Soft Deletes & Restore)
+   - Cetak Berita Acara Rekapitulasi Resmi (Format Print / PDF)
+   - Dokumentasi & Playground RESTful API JSON (`/api/v1/items`)
