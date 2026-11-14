@@ -96,24 +96,24 @@
             </div>
         </div>
 
-        <!-- PILAR 3: STUDI KASUS & TIM -->
+        <!-- PILAR 3: SISTEM LAB INVENTARIS LENGKAP -->
         <div class="col-lg-4">
             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
                 <div class="card-header bg-warning text-dark py-3 px-4 d-flex justify-content-between align-items-center">
-                    <h6 class="mb-0 fw-bold"><i class="bi bi-cone-striped me-2"></i>3. Kasus Lab & Kerja Tim</h6>
-                    <span class="badge bg-dark text-white fw-bold">Praktikum</span>
+                    <h6 class="mb-0 fw-bold"><i class="bi bi-box-seam me-2"></i>3. Sistem Lab Inventaris</h6>
+                    <span class="badge bg-dark text-white fw-bold">Praktikum Nyata</span>
                 </div>
                 <div class="card-body p-4">
                     <p class="text-muted small">
-                        Studi kasus aplikasi Inventaris Lab SMK dan simulasi kerja kelompok 2 siswa (Siswa A vs B) mengatasi *merge conflict*.
+                        Aplikasi inventaris sekolah dengan fitur nyata: pencarian, peminjaman alat, tong sampah, cetak laporan resmi, dan RESTful API.
                     </p>
                     <ul class="list-unstyled mb-4 small">
-                        <li class="py-1 border-bottom"><i class="bi bi-check-circle-fill text-success me-1"></i> Identitas & Watermark Siswa</li>
-                        <li class="py-1 border-bottom"><i class="bi bi-check-circle-fill text-success me-1"></i> Checklist 3 Misi Perbaikan</li>
-                        <li class="py-1"><i class="bi bi-check-circle-fill text-success me-1"></i> Simulator Konflik Kode Git</li>
+                        <li class="py-1 border-bottom"><i class="bi bi-check-circle-fill text-success me-1"></i> Transaksi Peminjaman Alat Lab</li>
+                        <li class="py-1 border-bottom"><i class="bi bi-check-circle-fill text-success me-1"></i> Proteksi Data: Soft Deletes &amp; Restore</li>
+                        <li class="py-1"><i class="bi bi-check-circle-fill text-success me-1"></i> Cetak Berita Acara &amp; RESTful API Docs</li>
                     </ul>
-                    <a href="{{ route('lab-kasus.index') }}" class="btn btn-outline-warning text-dark btn-sm w-100 fw-semibold">
-                        Buka Studi Kasus Lab <i class="bi bi-arrow-right ms-1"></i>
+                    <a href="{{ route('lab-kasus.index') }}" class="btn btn-warning text-dark btn-sm w-100 fw-bold">
+                        Buka Sistem Lab Inventaris <i class="bi bi-arrow-right ms-1"></i>
                     </a>
                 </div>
             </div>
@@ -252,6 +252,27 @@
                         Buka Modul 6 &rarr;
                     </a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BANNER KHUSUS: LABORATORIUM KEAMANAN WEB (6 TIPE KEAMANAN INDUSTRI) -->
+    <div class="card border-0 rounded-4 shadow-sm p-4 text-white mt-4" style="background: linear-gradient(135deg, #881337 0%, #4c0519 100%);">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mb-3 mb-lg-0">
+                <div class="d-inline-flex align-items-center gap-2 bg-danger bg-opacity-25 border border-danger border-opacity-50 px-3 py-1 rounded-pill small mb-2">
+                    <i class="bi bi-shield-fill-check text-warning"></i>
+                    <span class="text-white fw-bold">Standar Keamanan Siber SMK &amp; Industri</span>
+                </div>
+                <h4 class="fw-bold mb-1"><i class="bi bi-shield-lock-fill text-warning me-2"></i>Laboratorium Keamanan Web Laravel (6 Tipe Keamanan)</h4>
+                <p class="text-white text-opacity-75 small mb-0">
+                    Pelajari teknik pengamanan aplikasi yang wajib diketahui programmer: <strong>Role-Based Access Control (RBAC 403)</strong>, <strong>Rate Limiting / Throttle (Anti-Brute Force 429)</strong>, <strong>Bcrypt Password Hashing</strong>, <strong>XSS Sanitizer</strong>, <strong>Mass Assignment ($fillable)</strong>, dan <strong>Soft Deletes Data Integrity</strong>.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{{ route('belajar.keamanan') }}" class="btn btn-warning text-dark fw-bold px-4 py-2 shadow-sm">
+                    <i class="bi bi-lightning-charge-fill me-1"></i> Buka Lab Keamanan <i class="bi bi-arrow-right ms-1"></i>
+                </a>
             </div>
         </div>
     </div>

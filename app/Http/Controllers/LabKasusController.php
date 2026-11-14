@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
 class LabKasusController extends Controller
 {
     /**
-     * Dashboard Lab Studi Kasus Inventaris
+     * Dashboard Lab Studi Kasus Inventaris (dengan Pencarian & Filter Kategori/Kondisi)
      */
     public function index(Request $request)
     {
         $mode = $request->query('mode', 'db'); // 'db' atau 'dummy'
-        
+        $q = $request->query('q');
+        $kategori = $request->query('kategori');
+        $kondisi = $request->query('kondisi');
+
         if ($mode === 'dummy') {
             // Data statis contoh sebelum siswa menghubungkan ke DB
             $items = collect([
@@ -35,14 +39,41 @@ class LabKasusController extends Controller
                 ],
             ]);
         } else {
-            $items = Item::latest()->get();
+            // Query Eloquent dengan filter dinamis
+            $items = Item::withCount(['peminjamans as sedang_dipinjam' => function ($query) {
+                $query->where('status', 'Dipinjam');
+            }])
+            ->filter(['q' => $q, 'kategori' => $kategori, 'kondisi' => $kondisi])
+            ->latest()
+            ->get();
         }
 
-        return view('lab_kasus.index', compact('items', 'mode'));
+        // Statistik ringkas untuk widget atas
+        $stats = [
+            'total_barang' => Item::count(),
+            'total_stok' => (int) Item::sum('stok'),
+            'total_rusak' => Item::where('kondisi', '!=', 'Baik')->count(),
+            'total_dipinjam' => Peminjaman::where('status', 'Dipinjam')->count(),
+            'total_trash' => Item::onlyTrashed()->count(),
+        ];
+
+        return view('lab_kasus.index', compact('items', 'mode', 'stats', 'q', 'kategori', 'kondisi'));
     }
 
     /**
-     * Halaman Tambah Barang (Ada tantangan CSRF & Validasi)
+     * Halaman Detail Barang (Show Route) & Riwayat Peminjaman
+     */
+    public function show($id)
+    {
+        $item = Item::with(['peminjamans' => function ($q) {
+            $q->latest();
+        }])->findOrFail($id);
+
+        return view('lab_kasus.show', compact('item'));
+    }
+
+    /**
+     * Halaman Tambah Barang
      */
     public function create()
     {
@@ -56,7 +87,6 @@ class LabKasusController extends Controller
     {
         // Fitur simulasi: Jika siswa mematikan validasi untuk menguji form kosong
         if ($request->has('skip_validation') && $request->skip_validation == '1') {
-            // Langsung coba simpan tanpa validasi (akan di-handle di view untuk edukasi)
             if (empty($request->kode_barang) || empty($request->nama_barang)) {
                 return redirect()->back()
                     ->withInput()
@@ -135,16 +165,79 @@ class LabKasusController extends Controller
     }
 
     /**
-     * Hapus Barang
+     * Hapus Barang (Menggunakan Soft Delete demi Keamanan Data)
      */
     public function destroy($id)
     {
         $item = Item::findOrFail($id);
         $nama = $item->nama_barang;
-        $item->delete();
+        $item->delete(); // Soft delete (mengisi kolom deleted_at)
 
         return redirect()->route('lab-kasus.index')
-            ->with('success', "🗑️ Barang \"{$nama}\" berhasil dihapus dari inventaris!");
+            ->with('success', "🗑️ Barang \"{$nama}\" dipindahkan ke Tong Sampah (Soft Delete)! Data masih bisa dipulihkan kembali.");
+    }
+
+    /**
+     * Halaman Tong Sampah (Recycle Bin - Soft Deleted Items)
+     */
+    public function trash()
+    {
+        $trashItems = Item::onlyTrashed()->latest('deleted_at')->get();
+        return view('lab_kasus.trash', compact('trashItems'));
+    }
+
+    /**
+     * Pulihkan Barang dari Tong Sampah (Restore)
+     */
+    public function restore($id)
+    {
+        $item = Item::onlyTrashed()->findOrFail($id);
+        $nama = $item->nama_barang;
+        $item->restore();
+
+        return redirect()->route('lab-kasus.trash')
+            ->with('success', "♻️ Barang \"{$nama}\" berhasil dipulihkan kembali ke daftar inventaris aktif!");
+    }
+
+    /**
+     * Hapus Permanen dari Database (Force Delete)
+     */
+    public function forceDelete($id)
+    {
+        $item = Item::onlyTrashed()->findOrFail($id);
+        $nama = $item->nama_barang;
+        $item->forceDelete();
+
+        return redirect()->route('lab-kasus.trash')
+            ->with('warning', "💥 Barang \"{$nama}\" telah DIHAPUS PERMANEN dari database dan tidak dapat dipulihkan!");
+    }
+
+    /**
+     * Cetak Laporan Resmi Rekapitulasi Inventaris Lab (Print Ready)
+     */
+    public function laporan()
+    {
+        $items = Item::withCount(['peminjamans as sedang_dipinjam' => function ($q) {
+            $q->where('status', 'Dipinjam');
+        }])->orderBy('kategori')->orderBy('nama_barang')->get();
+
+        $stats = [
+            'total_barang' => Item::count(),
+            'total_stok' => (int) Item::sum('stok'),
+            'kondisi_baik' => Item::where('kondisi', 'Baik')->count(),
+            'kondisi_rusak' => Item::where('kondisi', '!=', 'Baik')->count(),
+            'total_dipinjam' => Peminjaman::where('status', 'Dipinjam')->count(),
+        ];
+
+        return view('lab_kasus.laporan', compact('items', 'stats'));
+    }
+
+    /**
+     * Halaman Dokumentasi RESTful API & Live Playground Tester
+     */
+    public function apiDocs()
+    {
+        return view('lab_kasus.api_docs');
     }
 
     /**
@@ -152,7 +245,8 @@ class LabKasusController extends Controller
      */
     public function resetData()
     {
-        Item::truncate();
+        // Force delete atau truncate
+        Item::withTrashed()->forceDelete();
 
         Item::create(['kode_barang' => 'LAB-001', 'nama_barang' => 'PC All-in-One Core i5 16GB', 'kategori' => 'Komputer', 'stok' => 24, 'kondisi' => 'Baik']);
         Item::create(['kode_barang' => 'LAB-002', 'nama_barang' => 'Router MikroTik RB750Gr3', 'kategori' => 'Jaringan', 'stok' => 12, 'kondisi' => 'Baik']);
@@ -160,14 +254,6 @@ class LabKasusController extends Controller
         Item::create(['kode_barang' => 'LAB-004', 'nama_barang' => 'Switch D-Link 24 Port Gigabit', 'kategori' => 'Jaringan', 'stok' => 3, 'kondisi' => 'Rusak Berat']);
 
         return redirect()->route('lab-kasus.index')
-            ->with('info', '🔄 Database inventaris telah di-reset ke data default awal!');
-    }
-
-    /**
-     * Halaman Kolaborasi Tim & Simulator Merge Conflict
-     */
-    public function kelompok()
-    {
-        return view('lab_kasus.kelompok');
+            ->with('info', '🔄 Database inventaris telah di-reset ke 4 data awal!');
     }
 }

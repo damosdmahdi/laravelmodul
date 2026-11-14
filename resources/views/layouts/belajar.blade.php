@@ -137,31 +137,46 @@
                     </li>
                     <!-- Dropdown Modul -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->is('belajar/modul*') ? 'active text-primary fw-semibold' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-cpu me-1"></i> 6 Simulator Interaktif
+                        <a class="nav-link dropdown-toggle {{ request()->is('belajar/modul*') || request()->routeIs('belajar.keamanan*') ? 'active text-primary fw-semibold' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-cpu me-1"></i> Modul &amp; Keamanan
                         </a>
                         <ul class="dropdown-menu shadow border-0">
-                            <li><a class="dropdown-item py-2" href="{{ route('belajar.modul1') }}"><i class="bi bi-folder2-open text-primary me-2"></i>Modul 1: Peta Folder & Setup</a></li>
-                            <li><a class="dropdown-item py-2" href="{{ route('belajar.modul2') }}"><i class="bi bi-diagram-3 text-success me-2"></i>Modul 2: Simulator Alur MVC & Route</a></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('belajar.modul1') }}"><i class="bi bi-folder2-open text-primary me-2"></i>Modul 1: Peta Folder &amp; Setup</a></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('belajar.modul2') }}"><i class="bi bi-diagram-3 text-success me-2"></i>Modul 2: Simulator Alur MVC &amp; Route</a></li>
                             <li><a class="dropdown-item py-2" href="{{ route('belajar.modul3') }}"><i class="bi bi-filetype-html text-danger me-2"></i>Modul 3: Blade Templating Studio</a></li>
-                            <li><a class="dropdown-item py-2" href="{{ route('belajar.modul4') }}"><i class="bi bi-database text-warning me-2"></i>Modul 4: Database & Migration</a></li>
-                            <li><a class="dropdown-item py-2" href="{{ route('belajar.modul5') }}"><i class="bi bi-shield-check text-info me-2"></i>Modul 5: Eloquent & Form CSRF</a></li>
-                            <li><a class="dropdown-item py-2" href="{{ route('belajar.modul6') }}"><i class="bi bi-check2-all text-secondary me-2"></i>Modul 6: CRUD & Validasi Form</a></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('belajar.modul4') }}"><i class="bi bi-database text-warning me-2"></i>Modul 4: Database &amp; Migration</a></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('belajar.modul5') }}"><i class="bi bi-shield-check text-info me-2"></i>Modul 5: Eloquent &amp; Form CSRF</a></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('belajar.modul6') }}"><i class="bi bi-check2-all text-secondary me-2"></i>Modul 6: CRUD &amp; Validasi Form</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item py-2 fw-bold text-danger" href="{{ route('belajar.keamanan') }}">
+                                    <i class="bi bi-shield-lock-fill text-danger me-2"></i>Laboratorium Keamanan Web (6 Tipe)
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('tugas.*') ? 'active text-success fw-bold' : 'text-light' }}" href="{{ route('tugas.index') }}">
-                            <i class="bi bi-patch-check-fill text-success me-1"></i> Autochecker Tugas Siswa
+                            <i class="bi bi-patch-check-fill text-success me-1"></i> Autochecker Tugas
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('lab-kasus*') && !request()->routeIs('lab-kasus.kelompok') ? 'active text-warning fw-semibold' : '' }}" href="{{ route('lab-kasus.index') }}">
-                            <i class="bi bi-tools text-warning me-1"></i> Studi Kasus Lab (Tantangan)
+                    <!-- Dropdown Studi Kasus Lab Inventaris -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ request()->is('lab-kasus*') ? 'active text-warning fw-semibold' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-tools text-warning me-1"></i> Sistem Lab Inventaris
                         </a>
+                        <ul class="dropdown-menu shadow border-0">
+                            <li><a class="dropdown-item py-2" href="{{ route('lab-kasus.index') }}"><i class="bi bi-box-seam text-warning me-2"></i>Daftar Barang Inventaris</a></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('lab-kasus.peminjaman.index') }}"><i class="bi bi-arrow-left-right text-primary me-2"></i>Peminjaman Alat Lab</a></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('lab-kasus.trash') }}"><i class="bi bi-trash3 text-danger me-2"></i>Tong Sampah (Soft Deletes)</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('lab-kasus.laporan') }}"><i class="bi bi-printer text-success me-2"></i>Cetak Rekap Laporan Resmi</a></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('lab-kasus.api-docs') }}"><i class="bi bi-code-slash text-info me-2"></i>Dokumentasi RESTful API</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('lab-kasus.kelompok') ? 'active text-info fw-semibold' : '' }}" href="{{ route('lab-kasus.kelompok') }}">
-                            <i class="bi bi-people-fill text-info me-1"></i> Kolaborasi Tim 2 Siswa
+                        <a class="nav-link {{ request()->routeIs('belajar.keamanan') ? 'active text-danger fw-bold' : 'text-danger-subtle' }}" href="{{ route('belajar.keamanan') }}">
+                            <i class="bi bi-shield-fill-exclamation text-danger me-1"></i> Lab Keamanan
                         </a>
                     </li>
                     <li class="nav-item">
@@ -246,13 +261,13 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold small">Peran Kerja Kelompok</label>
+                            <label class="form-label fw-bold small">Peran &amp; Hak Akses Aplikasi</label>
                             <select class="form-select" id="inputStudentRole">
-                                <option value="Siswa A (Create & Read)">Siswa A &bull; Fitur Create (Tambah) & Read (Tampil Data)</option>
-                                <option value="Siswa B (Update & Delete)">Siswa B &bull; Fitur Update (Edit) & Delete (Hapus Data)</option>
-                                <option value="Mandiri (Pengerjaan Individual)">Pengerjaan Mandiri (Semua Fitur CRUD)</option>
+                                <option value="Siswa (Hak Akses Biasa)" selected>Siswa (Hak Akses Peminjam &amp; Input Barang)</option>
+                                <option value="Guru Lab (Hak Akses Admin)">Guru Lab / Administrator (Hak Akses Penuh &amp; Hapus Permanen)</option>
+                                <option value="Mandiri (Pengerjaan Individual)">Siswa Mandiri (Semua Fitur CRUD &amp; Keamanan)</option>
                             </select>
-                            <div class="form-text">Pilih peran sesuai pembagian kerja di Modul 5 & 6.</div>
+                            <div class="form-text">Pilih peran untuk menguji proteksi Middleware Role (RBAC) pada sistem inventaris.</div>
                         </div>
                     </form>
                 </div>
