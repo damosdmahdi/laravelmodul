@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Barang Lab - Lab Inventaris SMK</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-box-seam me-2"></i>Lab Inventaris SMK
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/template-statis"><i class="bi bi-house-door me-1"></i> Data Barang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/template-statis/tambah"><i class="bi bi-plus-circle me-1"></i> Tambah Barang</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT WRAPPER -->
+    <main class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <!-- BREADCRUMB & TITLE -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h4 class="fw-bold mb-1">Form Tambah Barang Lab</h4>
+                        <p class="text-muted small mb-0">Template statis form input barang baru</p>
+                    </div>
+                    <a href="/template-statis" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-arrow-left me-1"></i> Kembali ke Daftar
+                    </a>
+                </div>
+
+                <!-- CARD FORM -->
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-white py-3">
+                        <h6 class="card-title mb-0 fw-semibold text-primary">
+                            <i class="bi bi-file-earmark-plus me-1"></i> Informasi Barang Baru
+                        </h6>
+                    </div>
+                    <div class="card-body p-4">
+                        <!-- CATATAN: Pada Modul 5, form ini akan diberi action="{{ route('items.store') }}" method="POST" dan @csrf -->
+                        <form action="#" method="POST">
+
+                            <div class="row g-3">
+                                <!-- KODE BARANG -->
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Kode Barang <span class="text-danger">*</span></label>
+                                    <input type="text" name="kode_barang" class="form-control" placeholder="Contoh: LAB-005" required>
+                                    <div class="form-text">Format kode unik lab.</div>
+                                </div>
+
+                                <!-- NAMA BARANG -->
+                                <div class="col-md-8">
+                                    <label class="form-label fw-semibold">Nama Barang <span class="text-danger">*</span></label>
+                                    <input type="text" name="nama_barang" class="form-control" placeholder="Contoh: Kabel LAN Cat6 50 Meter" required>
+                                </div>
+
+                                <!-- KATEGORI -->
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Kategori <span class="text-danger">*</span></label>
+                                    <select name="kategori" class="form-select" required>
+                                        <option value="" selected disabled>-- Pilih Kategori --</option>
+                                        <option value="Komputer">Komputer</option>
+                                        <option value="Jaringan">Jaringan</option>
+                                        <option value="Peralatan">Peralatan Praktek</option>
+                                        <option value="Furnitur">Furnitur / Meja Kursi</option>
+                                    </select>
+                                </div>
+
+                                <!-- JUMLAH STOK -->
+                                <div class="col-md-3">
+                                    <label class="form-label fw-semibold">Jumlah Stok <span class="text-danger">*</span></label>
+                                    <input type="number" name="stok" class="form-control" placeholder="0" min="0" required>
+                                </div>
+
+                                <!-- KONDISI -->
+                                <div class="col-md-3">
+                                    <label class="form-label fw-semibold">Kondisi <span class="text-danger">*</span></label>
+                                    <select name="kondisi" class="form-select" required>
+                                        <option value="Baik" selected>Baik</option>
+                                        <option value="Rusak Ringan">Rusak Ringan</option>
+                                        <option value="Rusak Berat">Rusak Berat</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <!-- TOMBOL SIMPAN & RESET -->
+                            <div class="d-flex justify-content-end gap-2">
+                                <a href="/template-statis" class="btn btn-light border">Batal</a>
+                                <button type="button" class="btn btn-primary px-4">
+                                    <i class="bi bi-save me-1"></i> Simpan Barang
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-top py-3 mt-5">
+        <div class="container text-center text-muted small">
+            &copy; 2026 Lab Inventaris SMK — Praktik Pemrograman Web & Framework Laravel
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
