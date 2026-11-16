@@ -2,9 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Models\Admin;
 use App\Models\Item;
 use App\Models\Peminjaman;
+use App\Models\Portfolio;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
@@ -52,6 +55,9 @@ class ExampleTest extends TestCase
             '/template-statis',
             '/template-statis/tambah',
             '/template-statis/edit',
+            '/belajar/ukk',
+            '/belajar/ukk/uji-kompetensi',
+            '/ukk/admin/login',
         ];
 
         foreach ($routes as $route) {
@@ -192,5 +198,95 @@ class ExampleTest extends TestCase
         $response = $this->post('/tugas-siswa/init');
         $response->assertRedirect('/tugas-siswa');
         $this->assertDirectoryExists(base_path('tugas-siswa'));
+    }
+
+    /**
+     * Test UKK slug check API endpoint.
+     */
+    public function test_ukk_check_slug_api(): void
+    {
+        Portfolio::create([
+            'nama_usaha' => 'Kue Enak Bu Sri',
+            'slug' => 'kue-enak-bu-sri',
+            'bio' => 'Aneka kue basah dan kering rumahan berkualitas.',
+            'whatsapp' => '081234567890',
+            'status' => 'published',
+        ]);
+
+        // 1. Existing slug should return available: false
+        $dupResponse = $this->getJson('/api/check-slug?slug=kue-enak-bu-sri');
+        $dupResponse->assertStatus(200)
+                    ->assertJson(['available' => false]);
+
+        // 2. New unique slug should return available: true
+        $uniqueResponse = $this->getJson('/api/check-slug?slug=bengkel-jaya-motor');
+        $uniqueResponse->assertStatus(200)
+                       ->assertJson(['available' => true]);
+    }
+
+    /**
+     * Test UKK Admin authentication, Portfolio CRUD and toggle publish.
+     */
+    public function test_ukk_admin_workflow_and_portfolio_crud(): void
+    {
+        $admin = Admin::create([
+            'name' => 'Admin Test',
+            'username' => 'admintest',
+            'email' => 'admintest@example.com',
+            'password' => Hash::make('secret123'),
+            'role' => 'admin',
+        ]);
+
+        // 1. Login
+        $loginRes = $this->post('/ukk/admin/login', [
+            'username' => 'admintest',
+            'password' => 'secret123',
+        ]);
+        $loginRes->assertRedirect('/ukk/admin');
+
+        // 2. Access dashboard with session
+        $dashRes = $this->withSession(['ukk_admin_id' => $admin->id])->get('/ukk/admin');
+        $dashRes->assertStatus(200);
+
+        // 3. Create portfolio
+        $createRes = $this->withSession(['ukk_admin_id' => $admin->id])->post('/ukk/admin/portfolios', [
+            'nama_usaha' => 'Warung Kopi Senja',
+            'tagline' => 'Kopi nikmat harga bersahabat',
+            'slug' => 'warung-kopi-senja',
+            'whatsapp' => '08987654321',
+            'alamat' => 'Jl. Pahlawan No. 45',
+            'bio' => 'Menyediakan aneka seduhan kopi nusantara.',
+            'status' => 'published',
+        ]);
+        $createRes->assertRedirect('/ukk/admin');
+        $this->assertDatabaseHas('portfolios', ['slug' => 'warung-kopi-senja']);
+
+        // 4. Verify public page works
+        $publicRes = $this->get('/umkm/warung-kopi-senja');
+        $publicRes->assertStatus(200)
+                  ->assertSee('Warung Kopi Senja')
+                  ->assertSee('Kopi nikmat harga bersahabat');
+
+        // 5. Toggle publish status to draft
+        $portfolio = Portfolio::where('slug', 'warung-kopi-senja')->first();
+        $toggleRes = $this->withSession(['ukk_admin_id' => $admin->id])
+            ->from('/ukk/admin')
+            ->post("/ukk/admin/portfolios/{$portfolio->id}/toggle");
+        $toggleRes->assertRedirect('/ukk/admin');
+        $this->assertEquals('draft', $portfolio->fresh()->status);
+
+        // 6. Draft status returns 404 for public
+        $draftPublicRes = $this->get('/umkm/warung-kopi-senja');
+        $draftPublicRes->assertStatus(404);
+    }
+
+    /**
+     * Test UKK 404 handler for nonexistent slug.
+     */
+    public function test_ukk_nonexistent_slug_returns_custom_404(): void
+    {
+        $response = $this->get('/umkm/slug-yang-tidak-ada-sama-sekali');
+        $response->assertStatus(404)
+                 ->assertSee('Portofolio Tidak Ditemukan');
     }
 }

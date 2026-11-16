@@ -14,17 +14,20 @@
                 </span>
                 <h1 class="display-6 fw-extrabold mb-2 text-white">Platform Praktikum Interaktif Laravel</h1>
                 <p class="lead text-light opacity-90 mb-4 fs-6">
-                    Membantu siswa SMK kelas 10 & 11 memahami pola pikir <strong>MVC (Model-View-Controller)</strong>, siklus request-response, dan operasi dasar database melalui <strong>simulator interaktif visual</strong> serta studi kasus nyata <strong>Sistem Inventaris Lab</strong>.
+                    Membantu siswa SMK kelas 10, 11 &amp; 12 memahami pola pikir <strong>MVC (Model-View-Controller)</strong>, siklus request-response, keamanan siber, dan persiapan <strong>Uji Kompetensi Keahlian (UKK) 2026/2027: Platform Web Portofolio UMKM</strong>.
                 </p>
                 <div class="d-flex flex-wrap gap-2">
+                    <a href="{{ route('belajar.ukk.panduan') }}" class="btn btn-warning text-dark px-4 fw-bold shadow-sm">
+                        <i class="bi bi-mortarboard-fill me-1"></i> Materi Soal UKK 2026/2027 (Kelas 12)
+                    </a>
                     <a href="{{ route('belajar.modul2') }}" class="btn btn-primary px-4 fw-semibold">
                         <i class="bi bi-diagram-3-fill me-1"></i> Coba Simulator Alur MVC
                     </a>
                     <a href="{{ route('lab-kasus.index') }}" class="btn btn-outline-warning px-4 fw-semibold">
-                        <i class="bi bi-tools me-1"></i> Buka Tantangan Studi Kasus
+                        <i class="bi bi-tools me-1"></i> Kasus Inventaris Lab
                     </a>
                     <button class="btn btn-outline-light px-3" data-bs-toggle="modal" data-bs-target="#studentIdentityModal">
-                        <i class="bi bi-person-badge me-1"></i> Atur Identitas Pengerja
+                        <i class="bi bi-person-badge me-1"></i> Atur Identitas
                     </button>
                 </div>
             </div>
@@ -40,8 +43,41 @@
                     <h5 class="fw-bold mb-1 text-primary" id="cardStudentName">Nama Siswa</h5>
                     <p class="mb-2 text-muted small" id="cardStudentDetail">Kelas &bull; No. Absen</p>
                     <div class="p-2 rounded bg-light border small">
-                        <strong>Peran Kelompok:</strong>
-                        <div class="text-success fw-bold" id="cardStudentRole">Siswa A</div>
+                        <strong>Peran / Target:</strong>
+                        <div class="text-success fw-bold" id="cardStudentRole">Peserta UKK RPL</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BANNER KHUSUS: UJI KOMPETENSI KEAHLIAN (UKK) 2026/2027 KELAS 12 -->
+    <div class="card border-0 shadow-sm rounded-4 mb-4 text-white overflow-hidden" style="background: linear-gradient(135deg, #7c2d12 0%, #451a03 100%); border-left: 6px solid #f59e0b;">
+        <div class="card-body p-4">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <span class="badge bg-warning text-dark fw-bold px-3 py-1">SOAL PRAKTIK KEJURUAN RESMI</span>
+                        <span class="badge bg-danger">KELAS 12 SMK</span>
+                    </div>
+                    <h4 class="fw-bold mb-1 text-white">
+                        <i class="bi bi-shop text-warning me-2"></i>Platform Web Portofolio UMKM (Model Done-For-You)
+                    </h4>
+                    <p class="text-light text-opacity-80 small mb-0">
+                        Materi persiapan UKK RPL: Single-door Dashboard Admin, Validasi Slug URL real-time, Publish/Draft, Audit Log Aktivitas, Halaman Landing Page Publik 1-Halaman, dan Penanganan Notifikasi 404.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <div class="d-flex flex-column flex-sm-row justify-content-lg-end gap-2">
+                        <a href="{{ route('belajar.ukk.panduan') }}" class="btn btn-warning text-dark fw-bold btn-sm px-3 py-2 shadow-sm">
+                            <i class="bi bi-book-half me-1"></i> Buka Panduan &amp; ERD
+                        </a>
+                        <a href="{{ route('ukk.admin.dashboard') }}" class="btn btn-light btn-sm px-3 py-2 fw-bold shadow-sm">
+                            <i class="bi bi-speedometer2 me-1"></i> Dashboard Admin
+                        </a>
+                        <a href="{{ route('belajar.ukk.uji') }}" class="btn btn-outline-light btn-sm px-3 py-2">
+                            <i class="bi bi-check2-all me-1"></i> 5 Skenario Uji
+                        </a>
                     </div>
                 </div>
             </div>

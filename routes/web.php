@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckerController;
 use App\Http\Controllers\LabKasusController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\SecurityController;
+use App\Http\Controllers\UkkController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -91,6 +92,36 @@ Route::prefix('api/v1')->group(function () {
     Route::post('/items', [ApiItemController::class, 'store']);
     Route::get('/stats', [ApiItemController::class, 'stats']);
 });
+
+// ==========================================
+// PILAR 4: UJI KOMPETENSI KEAHLIAN (UKK) RPL 2026/2027 (KELAS 12)
+// "Pengembangan Platform Web Portofolio UMKM"
+// ==========================================
+Route::prefix('belajar/ukk')->name('belajar.ukk.')->group(function () {
+    Route::get('/', [UkkController::class, 'panduan'])->name('panduan');
+    Route::get('/uji-kompetensi', [UkkController::class, 'ujiKompetensi'])->name('uji');
+});
+
+// API Ketersediaan Slug (Realtime AJAX Validator)
+Route::get('/api/check-slug', [UkkController::class, 'checkSlug'])->name('api.check-slug');
+
+// Dashboard & Manajemen Admin UKK UMKM (Sesuai Lampiran Halaman 5 Soal UKK)
+Route::prefix('ukk/admin')->name('ukk.admin.')->group(function () {
+    Route::get('/login', [UkkController::class, 'adminLogin'])->name('login');
+    Route::post('/login', [UkkController::class, 'adminLoginProcess'])->name('login.process');
+    Route::post('/logout', [UkkController::class, 'adminLogout'])->name('logout');
+
+    Route::get('/', [UkkController::class, 'adminDashboard'])->name('dashboard');
+    Route::post('/portfolios', [UkkController::class, 'storePortfolio'])->name('portfolios.store');
+    Route::get('/portfolios/{id}/edit', [UkkController::class, 'editPortfolio'])->name('portfolios.edit');
+    Route::put('/portfolios/{id}', [UkkController::class, 'updatePortfolio'])->name('portfolios.update');
+    Route::delete('/portfolios/{id}', [UkkController::class, 'destroyPortfolio'])->name('portfolios.destroy');
+    Route::post('/portfolios/{id}/toggle', [UkkController::class, 'togglePublish'])->name('portfolios.toggle');
+    Route::get('/logs', [UkkController::class, 'activityLogs'])->name('logs');
+});
+
+// Front-End Publik Portofolio UMKM (Akses via URL/slug unik)
+Route::get('/umkm/{slug}', [UkkController::class, 'showPublicPortfolio'])->name('umkm.show');
 
 // ==========================================
 // TEMPLATE STATIS MENTAH (BAHAN MENTOR MODUL 3)

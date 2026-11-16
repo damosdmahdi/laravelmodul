@@ -197,6 +197,23 @@
                             <i class="bi bi-shield-fill-exclamation text-danger me-1"></i> Lab Keamanan
                         </a>
                     </li>
+                    <!-- DROPDOWN SOAL UKK RPL 2026/2027 (KELAS 12) -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ request()->is('belajar/ukk*') || request()->is('ukk/admin*') ? 'active text-danger fw-bold' : 'text-warning-subtle fw-semibold' }}" href="#" role="button" data-bs-toggle="dropdown">
+                            <span class="badge bg-danger me-1">UKK RPL</span> Portofolio UMKM
+                        </a>
+                        <ul class="dropdown-menu shadow border-0">
+                            <li><a class="dropdown-item py-2 fw-bold text-dark" href="{{ route('belajar.ukk.panduan') }}"><i class="bi bi-mortarboard text-danger me-2"></i>Panduan &amp; Analisis Soal UKK</a></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('ukk.admin.dashboard') }}"><i class="bi bi-speedometer2 text-primary me-2"></i>Dashboard Admin UMKM</a></li>
+                            <li><a class="dropdown-item py-2" href="{{ route('umkm.show', 'kue-enak-bu-sri') }}" target="_blank"><i class="bi bi-shop text-warning me-2"></i>Halaman Publik "Kue Bu Sri"</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item py-2 fw-bold text-success" href="{{ route('belajar.ukk.uji') }}">
+                                    <i class="bi bi-patch-check-fill text-success me-2"></i>Uji Kompetensi (5 Skenario Uji)
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-muted" href="{{ route('template.index') }}" target="_blank">
                             <i class="bi bi-box-arrow-up-right me-1"></i> Template Mentah
@@ -275,7 +292,8 @@
                         <li class="mb-1"><a href="{{ route('belajar.index') }}" class="text-secondary text-decoration-none hover-white">&rarr; Dashboard 6 Modul Interaktif</a></li>
                         <li class="mb-1"><a href="{{ route('belajar.keamanan') }}" class="text-secondary text-decoration-none hover-white">&rarr; Laboratorium Keamanan Web (6 Tipe)</a></li>
                         <li class="mb-1"><a href="{{ route('lab-kasus.index') }}" class="text-secondary text-decoration-none hover-white">&rarr; Sistem Inventaris &amp; Peminjaman Lab</a></li>
-                        <li><a href="{{ route('tugas.index') }}" class="text-secondary text-decoration-none hover-white">&rarr; Autochecker Rapor Mandiri Siswa</a></li>
+                        <li class="mb-1"><a href="{{ route('tugas.index') }}" class="text-secondary text-decoration-none hover-white">&rarr; Autochecker Rapor Mandiri Siswa</a></li>
+                        <li><a href="{{ route('belajar.ukk.panduan') }}" class="text-warning text-decoration-none hover-white">&rarr; Soal UKK 2026/2027: Portofolio UMKM</a></li>
                     </ul>
                 </div>
             </div>
@@ -320,6 +338,8 @@
                                     <option value="11 RPL 1" selected>11 RPL 1</option>
                                     <option value="11 RPL 2">11 RPL 2</option>
                                     <option value="11 RPL 3">11 RPL 3</option>
+                                    <option value="12 RPL 1">12 RPL 1 (Peserta UKK)</option>
+                                    <option value="12 RPL 2">12 RPL 2 (Peserta UKK)</option>
                                     <option value="10 TKJ">10 TKJ</option>
                                     <option value="11 TKJ">11 TKJ</option>
                                 </select>
