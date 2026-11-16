@@ -221,10 +221,14 @@ class ExampleTest extends TestCase
             'status' => 'published',
         ]);
 
-        // 1. Existing slug should return available: false
+        // 1. Existing slug should return available: false with existing_owner and suggestions
         $dupResponse = $this->getJson('/api/check-slug?slug=kue-enak-bu-sri');
         $dupResponse->assertStatus(200)
-                    ->assertJson(['available' => false]);
+                    ->assertJson([
+                        'available' => false,
+                        'existing_owner' => 'Kue Enak Bu Sri'
+                    ])
+                    ->assertJsonStructure(['suggestions']);
 
         // 2. New unique slug should return available: true
         $uniqueResponse = $this->getJson('/api/check-slug?slug=bengkel-jaya-motor');

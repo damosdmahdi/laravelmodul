@@ -71,12 +71,32 @@ class UkkController extends Controller
         $exists = $query->exists();
 
         if ($exists) {
+            $existingItem = $query->first();
+            $ownerName = $existingItem->nama_usaha ?? 'UMKM Terdaftar';
+
+            // Buat rekomendasi alternatif yang belum terdaftar
+            $year = date('Y');
+            $candidates = [
+                $slug . '-2',
+                $slug . '-' . $year,
+                $slug . '-official',
+                $slug . '-id',
+            ];
+            $suggestions = [];
+            foreach ($candidates as $cand) {
+                if (!Portfolio::where('slug', $cand)->exists()) {
+                    $suggestions[] = $cand;
+                }
+            }
+
             return response()->json([
                 'available' => false,
                 'slug' => $slug,
-                'message' => "❌ URL slug '{$slug}' SUDAH DIPAKAI oleh UMKM lain. Silakan buat variasi unik!",
+                'message' => "❌ URL slug '{$slug}' SUDAH DIPAKAI oleh UMKM lain ({$ownerName}). Silakan buat variasi unik!",
                 'status' => 'duplicate',
-                'url_preview' => url("/umkm/{$slug}")
+                'url_preview' => url("/umkm/{$slug}"),
+                'existing_owner' => $ownerName,
+                'suggestions' => $suggestions,
             ], 200);
         }
 
@@ -85,7 +105,8 @@ class UkkController extends Controller
             'slug' => $slug,
             'message' => "✅ URL slug '{$slug}' TERSEDIA dan valid untuk diterbitkan!",
             'status' => 'available',
-            'url_preview' => url("/umkm/{$slug}")
+            'url_preview' => url("/umkm/{$slug}"),
+            'suggestions' => [],
         ], 200);
     }
 
