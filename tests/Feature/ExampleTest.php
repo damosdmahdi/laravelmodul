@@ -37,6 +37,13 @@ class ExampleTest extends TestCase
             '/belajar/modul-5',
             '/belajar/modul-6',
             '/belajar/materi-lanjutan',
+            '/belajar/materi-lanjutan/1-route-model-binding',
+            '/belajar/materi-lanjutan/2-relasi-eager-loading',
+            '/belajar/materi-lanjutan/3-storage-symlink',
+            '/belajar/materi-lanjutan/4-database-transactions',
+            '/belajar/materi-lanjutan/5-accessors-mutators',
+            '/belajar/materi-lanjutan/6-model-observers',
+            '/belajar/materi-lanjutan/7-middleware-pipeline',
             '/belajar/keamanan',
             '/lab-kasus',
             '/lab-kasus?mode=dummy',
@@ -299,12 +306,20 @@ class ExampleTest extends TestCase
         $response = $this->get('/belajar/materi-lanjutan');
         $response->assertStatus(200)
                  ->assertSee('7 Konsep Inti Arsitektur Laravel Modern')
-                 ->assertSee('Route Model Binding & Custom Key')
-                 ->assertSee('N+1 Query Problem')
-                 ->assertSee('File Storage, Validasi Upload')
+                 ->assertSee('Route Model Binding')
+                 ->assertSee('N+1 Query')
+                 ->assertSee('Storage Symlink')
                  ->assertSee('Database Transactions')
-                 ->assertSee('Eloquent Accessors, Mutators')
-                 ->assertSee('Model Observers & Lifecycle Events')
+                 ->assertSee('Accessors, Mutators')
+                 ->assertSee('Model Observers')
                  ->assertSee('Pipeline Middleware');
+
+        // Test dedicated topic 5: Accessors & Mutators has real code for WA and Harga
+        $t5Response = $this->get('/belajar/materi-lanjutan/5-accessors-mutators');
+        $t5Response->assertStatus(200)
+                   ->assertSee('whatsappUrl')
+                   ->assertSee('hargaRupiah')
+                   ->assertSee('app/Models/Portfolio.php')
+                   ->assertSee('app/Models/PortfolioProduct.php');
     }
 }

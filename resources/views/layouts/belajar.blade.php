@@ -180,7 +180,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('belajar.materi.lanjutan') ? 'active text-warning fw-bold' : 'text-light' }}" href="{{ route('belajar.materi.lanjutan') }}">
+                        <a class="nav-link {{ request()->is('belajar/materi-lanjutan*') ? 'active text-warning fw-bold' : 'text-light' }}" href="{{ route('belajar.materi.lanjutan') }}">
                             <i class="bi bi-stars text-warning me-1"></i> Materi Lanjutan
                         </a>
                     </li>

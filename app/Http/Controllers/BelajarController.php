@@ -66,10 +66,45 @@ class BelajarController extends Controller
     }
 
     /**
-     * Materi Lanjutan: 7 Arsitektur & Konsep Inti Laravel Modern
+     * Materi Lanjutan: Hub Silabus 7 Arsitektur & Konsep Inti Laravel
      */
     public function materiLanjutan()
     {
-        return view('belajar.materi_lanjutan');
+        return view('belajar.lanjutan.index');
+    }
+
+    public function lanjutanTopik1()
+    {
+        return view('belajar.lanjutan.topik1_slug');
+    }
+
+    public function lanjutanTopik2()
+    {
+        return view('belajar.lanjutan.topik2_n1');
+    }
+
+    public function lanjutanTopik3()
+    {
+        return view('belajar.lanjutan.topik3_storage');
+    }
+
+    public function lanjutanTopik4()
+    {
+        return view('belajar.lanjutan.topik4_transaction');
+    }
+
+    public function lanjutanTopik5()
+    {
+        return view('belajar.lanjutan.topik5_accessors');
+    }
+
+    public function lanjutanTopik6()
+    {
+        return view('belajar.lanjutan.topik6_observers');
+    }
+
+    public function lanjutanTopik7()
+    {
+        return view('belajar.lanjutan.topik7_middleware');
     }
 }

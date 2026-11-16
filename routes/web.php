@@ -30,6 +30,13 @@ Route::prefix('belajar')->name('belajar.')->group(function () {
     Route::get('/modul-5', [BelajarController::class, 'modul5'])->name('modul5');
     Route::get('/modul-6', [BelajarController::class, 'modul6'])->name('modul6');
     Route::get('/materi-lanjutan', [BelajarController::class, 'materiLanjutan'])->name('materi.lanjutan');
+    Route::get('/materi-lanjutan/1-route-model-binding', [BelajarController::class, 'lanjutanTopik1'])->name('materi.lanjutan.1');
+    Route::get('/materi-lanjutan/2-relasi-eager-loading', [BelajarController::class, 'lanjutanTopik2'])->name('materi.lanjutan.2');
+    Route::get('/materi-lanjutan/3-storage-symlink', [BelajarController::class, 'lanjutanTopik3'])->name('materi.lanjutan.3');
+    Route::get('/materi-lanjutan/4-database-transactions', [BelajarController::class, 'lanjutanTopik4'])->name('materi.lanjutan.4');
+    Route::get('/materi-lanjutan/5-accessors-mutators', [BelajarController::class, 'lanjutanTopik5'])->name('materi.lanjutan.5');
+    Route::get('/materi-lanjutan/6-model-observers', [BelajarController::class, 'lanjutanTopik6'])->name('materi.lanjutan.6');
+    Route::get('/materi-lanjutan/7-middleware-pipeline', [BelajarController::class, 'lanjutanTopik7'])->name('materi.lanjutan.7');
 
     // Laboratorium Keamanan Web (Security Hub)
     Route::get('/keamanan', [SecurityController::class, 'index'])->name('keamanan');
