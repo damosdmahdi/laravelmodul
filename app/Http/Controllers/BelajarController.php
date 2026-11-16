@@ -64,4 +64,12 @@ class BelajarController extends Controller
     {
         return view('belajar.modul6');
     }
+
+    /**
+     * Materi Lanjutan: 7 Arsitektur & Konsep Inti Laravel Modern
+     */
+    public function materiLanjutan()
+    {
+        return view('belajar.materi_lanjutan');
+    }
 }

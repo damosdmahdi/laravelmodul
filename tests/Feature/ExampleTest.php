@@ -36,6 +36,7 @@ class ExampleTest extends TestCase
             '/belajar/modul-4',
             '/belajar/modul-5',
             '/belajar/modul-6',
+            '/belajar/materi-lanjutan',
             '/belajar/keamanan',
             '/lab-kasus',
             '/lab-kasus?mode=dummy',
@@ -288,5 +289,22 @@ class ExampleTest extends TestCase
         $response = $this->get('/umkm/slug-yang-tidak-ada-sama-sekali');
         $response->assertStatus(404)
                  ->assertSee('Portofolio Tidak Ditemukan');
+    }
+
+    /**
+     * Test Materi Lanjutan page loads correctly with all 7 architecture topics.
+     */
+    public function test_materi_lanjutan_page_loads_with_all_simulators(): void
+    {
+        $response = $this->get('/belajar/materi-lanjutan');
+        $response->assertStatus(200)
+                 ->assertSee('7 Konsep Inti Arsitektur Laravel Modern')
+                 ->assertSee('Route Model Binding & Custom Key')
+                 ->assertSee('N+1 Query Problem')
+                 ->assertSee('File Storage, Validasi Upload')
+                 ->assertSee('Database Transactions')
+                 ->assertSee('Eloquent Accessors, Mutators')
+                 ->assertSee('Model Observers & Lifecycle Events')
+                 ->assertSee('Pipeline Middleware');
     }
 }

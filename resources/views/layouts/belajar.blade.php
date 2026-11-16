@@ -167,11 +167,22 @@
                             <li><a class="dropdown-item py-2" href="{{ route('belajar.modul6') }}"><i class="bi bi-check2-all text-secondary me-2"></i>Modul 6: CRUD &amp; Validasi Form</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
+                                <a class="dropdown-item py-2 fw-bold text-warning" href="{{ route('belajar.materi.lanjutan') }}">
+                                    <i class="bi bi-stars text-warning me-2"></i>Materi Lanjutan: 7 Konsep Inti Laravel
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
                                 <a class="dropdown-item py-2 fw-bold text-danger" href="{{ route('belajar.keamanan') }}">
                                     <i class="bi bi-shield-lock-fill text-danger me-2"></i>Laboratorium Keamanan Web (6 Tipe)
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('belajar.materi.lanjutan') ? 'active text-warning fw-bold' : 'text-light' }}" href="{{ route('belajar.materi.lanjutan') }}">
+                            <i class="bi bi-stars text-warning me-1"></i> Materi Lanjutan
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('tugas.*') ? 'active text-success fw-bold' : 'text-light' }}" href="{{ route('tugas.index') }}">

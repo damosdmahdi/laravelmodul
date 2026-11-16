@@ -51,32 +51,32 @@
         </div>
     </div>
 
-    <!-- BANNER KHUSUS: UJI KOMPETENSI KEAHLIAN (UKK) 2026/2027 KELAS 12 -->
+    <!-- BANNER KHUSUS: STUDI KASUS NYATA - PLATFORM PORTOFOLIO UMKM -->
     <div class="card border-0 shadow-sm rounded-4 mb-4 text-white overflow-hidden" style="background: linear-gradient(135deg, #7c2d12 0%, #451a03 100%); border-left: 6px solid #f59e0b;">
         <div class="card-body p-4">
             <div class="row align-items-center gy-3">
                 <div class="col-lg-8">
                     <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="badge bg-warning text-dark fw-bold px-3 py-1">SOAL PRAKTIK KEJURUAN RESMI</span>
-                        <span class="badge bg-danger">KELAS 12 SMK</span>
+                        <span class="badge bg-warning text-dark fw-bold px-3 py-1">STUDI KASUS INDUSTRI</span>
+                        <span class="badge bg-danger">KELAS 12 RPL</span>
                     </div>
                     <h4 class="fw-bold mb-1 text-white">
-                        <i class="bi bi-shop text-warning me-2"></i>Platform Web Portofolio UMKM (Model Done-For-You)
+                        <i class="bi bi-shop text-warning me-2"></i>Studi Kasus Nyata: Platform Web Portofolio UMKM
                     </h4>
                     <p class="text-light text-opacity-80 small mb-0">
-                        Materi persiapan UKK RPL: Single-door Dashboard Admin, Validasi Slug URL real-time, Publish/Draft, Audit Log Aktivitas, Halaman Landing Page Publik 1-Halaman, dan Penanganan Notifikasi 404.
+                        Implementasi komprehensif konsep arsitektur Laravel: <strong>Single-door Admin Portal</strong>, <strong>Dynamic SEO Slugs</strong>, <strong>Validasi AJAX Real-time</strong>, <strong>Relasi One-to-Many Produk</strong>, <strong>Audit Trail Activity Logs</strong>, dan <strong>Penanganan 404 Elegan</strong>.
                     </p>
                 </div>
                 <div class="col-lg-4 text-lg-end">
                     <div class="d-flex flex-column flex-sm-row justify-content-lg-end gap-2">
-                        <a href="{{ route('belajar.ukk.panduan') }}" class="btn btn-warning text-dark fw-bold btn-sm px-3 py-2 shadow-sm">
-                            <i class="bi bi-book-half me-1"></i> Buka Panduan &amp; ERD
+                        <a href="{{ route('belajar.materi.lanjutan') }}" class="btn btn-warning text-dark fw-bold btn-sm px-3 py-2 shadow-sm">
+                            <i class="bi bi-stars me-1"></i> Pelajari 7 Konsep Inti
                         </a>
                         <a href="{{ route('ukk.admin.dashboard') }}" class="btn btn-light btn-sm px-3 py-2 fw-bold shadow-sm">
                             <i class="bi bi-speedometer2 me-1"></i> Dashboard Admin
                         </a>
-                        <a href="{{ route('belajar.ukk.uji') }}" class="btn btn-outline-light btn-sm px-3 py-2">
-                            <i class="bi bi-check2-all me-1"></i> 5 Skenario Uji
+                        <a href="{{ route('belajar.ukk.panduan') }}" class="btn btn-outline-light btn-sm px-3 py-2">
+                            <i class="bi bi-diagram-3 me-1"></i> ERD &amp; Alur
                         </a>
                     </div>
                 </div>
@@ -287,6 +287,40 @@
                     <a href="{{ route('belajar.modul6') }}" class="btn btn-sm btn-outline-secondary w-100">
                         Buka Modul 6 &rarr;
                     </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODUL 7: MATERI LANJUTAN ARSITEKTUR MODERN -->
+        <div class="col-12">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden text-white" style="background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); border-left: 6px solid #6366f1;">
+                <div class="card-body p-4">
+                    <div class="row align-items-center gy-3">
+                        <div class="col-lg-8">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="badge bg-indigo text-white fw-bold px-3 py-1" style="background-color: #6366f1;">
+                                    <i class="bi bi-stars me-1"></i>MATERI LANJUTAN ARSITEKTUR
+                                </span>
+                                <span class="badge bg-secondary">Tingkat Menengah - Mahir</span>
+                            </div>
+                            <h4 class="fw-bold mb-1 text-white">
+                                <i class="bi bi-cpu-fill text-warning me-2"></i>7 Konsep Inti Arsitektur Laravel Modern
+                            </h4>
+                            <p class="text-light text-opacity-80 small mb-2">
+                                Bedah konsep arsitektur Laravel industri yang melampaui CRUD dasar: <strong>Route Model Binding (SEO Slugs)</strong>, <strong>Pencegahan N+1 Query Problem (Eager Loading with)</strong>, <strong>Storage Symlink Pipeline</strong>, <strong>Database Transactions (Rollback vs Commit)</strong>, <strong>Model Accessors/Mutators</strong>, <strong>Model Observers (Audit Trail)</strong>, dan <strong>Middleware Pipeline</strong>.
+                            </p>
+                            <div class="d-flex flex-wrap gap-2 small">
+                                <span class="badge bg-dark border border-secondary text-light"><i class="bi bi-play-circle text-warning me-1"></i>7 Simulator Interaktif</span>
+                                <span class="badge bg-dark border border-secondary text-light"><i class="bi bi-check2-circle text-success me-1"></i>Do's &amp; Don'ts Industri</span>
+                                <span class="badge bg-dark border border-secondary text-light"><i class="bi bi-code-slash text-info me-1"></i>Clean Architecture</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-lg-end">
+                            <a href="{{ route('belajar.materi.lanjutan') }}" class="btn btn-primary fw-bold px-4 py-2 shadow-sm">
+                                <i class="bi bi-stars me-1"></i> Buka Materi Lanjutan <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

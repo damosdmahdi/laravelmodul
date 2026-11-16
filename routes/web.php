@@ -29,6 +29,7 @@ Route::prefix('belajar')->name('belajar.')->group(function () {
     Route::get('/modul-4', [BelajarController::class, 'modul4'])->name('modul4');
     Route::get('/modul-5', [BelajarController::class, 'modul5'])->name('modul5');
     Route::get('/modul-6', [BelajarController::class, 'modul6'])->name('modul6');
+    Route::get('/materi-lanjutan', [BelajarController::class, 'materiLanjutan'])->name('materi.lanjutan');
 
     // Laboratorium Keamanan Web (Security Hub)
     Route::get('/keamanan', [SecurityController::class, 'index'])->name('keamanan');
